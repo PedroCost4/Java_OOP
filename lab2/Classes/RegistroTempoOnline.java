@@ -31,7 +31,7 @@ public class RegistroTempoOnline {
     }
 
     public String toString() {
-        return (MessageFormat.format("Nome da Disciplina: {0}.\n Tempo Online: {1}.\n Tempo Online Esperado {2}.",
+        return (MessageFormat.format("Nome da Disciplina: {0}.\nTempo Online: {1}.\nTempo Online Esperado {2}.",
                 this.nomeDisciplina, this.TempoOnline, this.TempoOnlineEsperado));
     }
 }
