@@ -1,4 +1,4 @@
-
+package Classes;
 
 import java.util.Arrays;
 import java.text.MessageFormat;
@@ -9,7 +9,7 @@ public class Disciplina {
     double[] notas = new double[4];
     double mediaNotas;
 
-    Disciplina(String nomeDisciplina) {
+    public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
     }
 

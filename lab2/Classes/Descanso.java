@@ -1,11 +1,9 @@
-
+package Classes;
 
 public class Descanso {
     private int horasDescanso = 0;
     private String status = "Cansado";
     private int numeroSemanas = 0;
-
-    public Descanso() {}
 
     public void defineHorasDescanso(int valor) {
         this.horasDescanso = valor;

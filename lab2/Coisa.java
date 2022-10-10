@@ -1,4 +1,8 @@
 
+import Classes.Descanso;
+import Classes.Disciplina;
+import Classes.RegistroTempoOnline;
+
 public class Coisa {
   public static void main(String[] args) {
       registrarDescanso();
