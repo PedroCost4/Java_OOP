@@ -1,7 +1,6 @@
 package Classes;
 
 import java.util.Arrays;
-import java.text.MessageFormat;
 
 public class Disciplina {
     String nomeDisciplina;
@@ -27,7 +26,7 @@ public class Disciplina {
     }
 
     public String toString() {
-        return (MessageFormat.format("Nome da Disciplina: {0}.\nHoras de estudo: {1}.\nNotas do aluno: {2}.",
-                this.nomeDisciplina, this.horas, this.mediaNotas));
+        return String.format("%s %d %.1f %s" , nomeDisciplina, horas, mediaNotas, Arrays.toString(notas));
     }
 }
+

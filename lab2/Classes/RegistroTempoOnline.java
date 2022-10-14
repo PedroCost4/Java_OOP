@@ -1,7 +1,5 @@
 package Classes;
 
-import java.text.MessageFormat;
-
 public class RegistroTempoOnline {
     private int TempoOnline = 0;
     private boolean metaAtingida = false;
@@ -31,7 +29,6 @@ public class RegistroTempoOnline {
     }
 
     public String toString() {
-        return (MessageFormat.format("Nome da Disciplina: {0}.\nTempo Online: {1}.\nTempo Online Esperado {2}.",
-                this.nomeDisciplina, this.TempoOnline, this.TempoOnlineEsperado));
+        return String.format("%s %d / %d", nomeDisciplina, TempoOnline , TempoOnlineEsperado);
     }
 }
