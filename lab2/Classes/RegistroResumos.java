@@ -2,12 +2,15 @@ package Classes;
 
 public class RegistroResumos {
     private int numeroMaxResumos;
-    private String[] Tema = new String[numeroMaxResumos];
-    private String[] Resumos = new String[numeroMaxResumos];
-    private boolean TemResumo = false;
-    
-    public RegistroResumos(int numeroDeResumos) {
-        this.numeroMaxResumos = numeroDeResumos;
+    private String[] Tema;
+    private String[] Resumos;
+    private int ContadorRegistros = 0;
+    private boolean TemResumo;
+
+    public RegistroResumos(int numeroMaxResumos) {
+        this.numeroMaxResumos = numeroMaxResumos;
+        this.Tema = new String[numeroMaxResumos];
+        this.Resumos = new String[numeroMaxResumos];
     }
 
     public String[] pegaResumos() {
@@ -15,18 +18,27 @@ public class RegistroResumos {
     }
 
     public String imprimeResumos() {
-        return ("");
+        String Auxiliar = "";
+        Auxiliar += String.format("- %d resumo(s) cadastrado(s)\n- ", ContadorRegistros);
+        for (int i = 0; i < ContadorRegistros-1; i++) {
+            Auxiliar += Tema[i] + " | ";
+        }
+        Auxiliar += Tema[ContadorRegistros-1];
+        return Auxiliar;
     }
 
     public void adiciona(String tema, String resumos) {
-        int i = 0;
-        for (i = 0; i < numeroMaxResumos; i++) {
-            
+        if (ContadorRegistros == numeroMaxResumos ){
+            ContadorRegistros = 0;
         }
+        Tema[ContadorRegistros] = tema;
+        Resumos[ContadorRegistros] = tema + ": " + resumos ;
+        ContadorRegistros++;
     }
 
     public boolean temResumo(String tema) {
-        for (int i = 0; i < numeroMaxResumos; i++) {
+        TemResumo = false;
+        for (int i = 0; i < ContadorRegistros; i++) {
             if (Tema[i].equals(tema)) {
                 TemResumo = true;
             }
@@ -35,7 +47,7 @@ public class RegistroResumos {
     }
 
     public int conta() {
-        return Resumos.length;
+        return ContadorRegistros;
     }
-        
+
 }
