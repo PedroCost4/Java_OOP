@@ -1,27 +1,41 @@
 package Classes;
 
+/**
+ * Classe para criar o objeto de resumo.
+ *
+ * @author Pedro Henrique Almeida Costa
+ */
 public class Registro {
-    private String Tema;
-    private String Resumo;
+    private String tema;
+    private String resumo;
 
-    public Registro(String tema, String Resumo) {
-        this.Tema = tema;
-        this.Resumo = Resumo;
+    /**
+    * Constrói um resumo a partir de seu tema e conteudo.
+    *
+    * @param tema 
+    * @param resumo
+    */
+    public Registro(String tema, String resumo) {
+        this.tema = tema;
+        this.resumo = resumo;
     }
 
     
-    /** 
+    /** Retorna o tema do resumo
+     * 
+     * 
      * @return String
      */
     public String getTema() {
-        return this.Tema;
+        return this.tema;
     }
 
     
-    /** 
+    /** Retorna o conteúdo do resumo 
+     * 
      * @return String
      */
     public String getResumo() { 
-        return this.Resumo;
+        return this.resumo;
     }
 }

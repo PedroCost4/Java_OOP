@@ -1,82 +1,100 @@
 package Classes;
 
-
+/**
+ * Representação de um criador de resumos do aluno na disciplina.
+ *
+ * @author Pedro Henrique Almeida Costa
+ */
 public class RegistroResumos {
-    private int numeroMaxResumos;
-    private int ContadorRegistros = 0;
-    private Registro[] Resumos;
-    private boolean TemResumo;
-    private Registro Registro;
+    private int contador_registros = 0;
+    private Registro[] resumos;
     private String[] searchedResumo;
 
-    public RegistroResumos(int numeroMaxResumos) {
-        this.numeroMaxResumos = numeroMaxResumos;
-        this.Resumos = new Registro[numeroMaxResumos];
+    /**
+     * Constrói o array de resumos de acordo com o numero maximo de resumos.
+     *
+     * @param numeroMaxresumos
+     */
+    public RegistroResumos(int numeroMaxresumos) {;
+        this.resumos = new Registro[numeroMaxresumos];
     }
 
-    
-    /** 
+    /**
+     * Retorna o Array contendo os objetos de resumo.
+     * 
      * @return Registro[]
      */
     public Registro[] pegaResumos() {
-        return Resumos;
+        return resumos;
     }
 
-    
-    /** 
+    /**
+     * Retorna a quantidade de registros cadastrados.
+     * 
      * @return int
      */
     public int conta() {
-        return ContadorRegistros;
+        return contador_registros;
     }
 
-    
-    /** 
+    /**
+     * Retorna uma string com os resumos cadastrados.
+     * 
      * @return String
      */
     public String imprimeResumos() {
         String Auxiliar = "";
-        Auxiliar += String.format("- %d resumo(s) cadastrado(s)\n- ", ContadorRegistros);
-        for (int i = 0; i < ContadorRegistros-1; i++) {
-            Auxiliar += Resumos[i].getTema() + " | ";
+        Auxiliar += String.format("- %d resumo(s) cadastrado(s)\n- ", contador_registros);
+        for (int i = 0; i < contador_registros - 1; i++) {
+            Auxiliar += resumos[i].getTema() + " | ";
         }
-        Auxiliar += Resumos[ContadorRegistros-1].getTema();
+        Auxiliar += resumos[contador_registros - 1].getTema();
         return Auxiliar;
     }
 
-    
-    /** 
+    /**
+     * Adiciona novos resumos no array de registros.
+     * 
      * @param tema
      * @param resumos
      */
-    public void adiciona(String tema, String resumos) {
-        ContadorRegistros = (ContadorRegistros == numeroMaxResumos) ? 0 : ContadorRegistros;
-        Registro = new Registro(tema, resumos);
-        Resumos[ContadorRegistros] = Registro;
-        ContadorRegistros++;
+    public void adiciona(String tema, String resumo) {
+        contador_registros = (contador_registros == resumos.length) ? 0 : contador_registros;
+        Registro Registro = new Registro(tema, resumo);
+        resumos[contador_registros] = Registro;
+        contador_registros++;
     }
 
-    
-    /** 
+    /**
+     * Checa se tem algum resumo com o tema procurado, retornando um boolean true or
+     * false.
+     * 
      * @param tema
      * @return boolean
      */
     public boolean temResumo(String tema) {
-        TemResumo = false;
-        for (int i = 0; i < ContadorRegistros-1; i++) {
-            TemResumo = (Resumos[i].getTema() == tema);
+        for (int i = 0; i < contador_registros - 1; i++) {
+            if (resumos[i].getTema() == tema) {
+                return true;
+            };
         }
-        return TemResumo;
+        return false;
     }
 
+    /*
+     * Retorna Array[String] com todos os resumos que contem a palavra de busca.
+     * 
+     * @param String ChaveDeBusca
+     * 
+     * @return Array[String]
+     */
     public String[] busca(String chaveDeBusca) {
-        searchedResumo = new String[ContadorRegistros];
-        for (int i = 0; i < ContadorRegistros; i++) {
-            if (Resumos[i].getResumo().contains(chaveDeBusca)) {
-                searchedResumo[i] = Resumos[i].getTema();
+        searchedResumo = new String[contador_registros];
+        for (int i = 0; i < contador_registros; i++) {
+            if (resumos[i].getResumo().contains(chaveDeBusca)) {
+                searchedResumo[i] = resumos[i].getTema();
             }
-        } 
-
+        }
         return searchedResumo;
     }
 }
