@@ -15,10 +15,18 @@ public class RegistroTempoOnline {
         this.TempoOnlineEsperado = tempoOnlineEsperado;
     }
 
+    
+    /** 
+     * @param tempo
+     */
     public void adicionaTempoOnline(int tempo) {
         this.TempoOnline += tempo;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean atingiuMetaTempoOnline() {
         if (TempoOnline >= TempoOnlineEsperado)  {
             this.metaAtingida = true;
@@ -28,6 +36,10 @@ public class RegistroTempoOnline {
         return metaAtingida;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String toString() {
         return String.format("%s %d / %d", nomeDisciplina, TempoOnline , TempoOnlineEsperado);
     }

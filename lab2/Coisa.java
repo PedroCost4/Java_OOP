@@ -51,18 +51,26 @@ public class Coisa {
       RegistroResumos meusResumos = new RegistroResumos(100);  // 100 resumos
      
       meusResumos.adiciona("Classes", "Classes definem um tipo e a base de código para criação de objetos.");
-      meusResumos.adiciona("Tipo", "Identifica a semântica (operações e significados) de um conjunto de dados.");
+      meusResumos.adiciona("Tipo", " definem Identifica a semântica (operações e significados) de um conjunto de dados.");
  
-      String[] resumos = meusResumos.pegaResumos();
+      Registro[] resumos = meusResumos.pegaResumos();
  
       for (int i = 0; i < meusResumos.conta(); i++) {
-          System.out.println(resumos[i]);
+          System.out.println(resumos[i].getTema() + " | " + resumos[i].getResumo());
       }
- 
+      
       System.out.println();
       System.out.println("Resumos: ");
       System.out.println(meusResumos.imprimeResumos());
       System.out.println(meusResumos.temResumo("Classes"));
-      System.out.println(meusResumos.temResumo("Objetos"));
+      System.out.println(meusResumos.temResumo("Objetos") + "\n");
+
+      String[] buscados = meusResumos.busca("definem");
+
+      for (int i = 0; i < meusResumos.conta(); i++) {
+        if (buscados[i] != null){
+            System.out.println(buscados[i]);
+        }
+    }
   }
 }
