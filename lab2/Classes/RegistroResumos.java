@@ -9,6 +9,7 @@ public class RegistroResumos {
     private int contador_registros = 0;
     private Registro[] resumos;
     private String[] searchedResumo;
+    private int contador_total_registros = 0;
 
     /**
      * Constrói o array de resumos de acordo com o numero maximo de resumos.
@@ -34,7 +35,7 @@ public class RegistroResumos {
      * @return int
      */
     public int conta() {
-        return contador_registros;
+        return contador_total_registros;
     }
 
     /**
@@ -44,11 +45,11 @@ public class RegistroResumos {
      */
     public String imprimeResumos() {
         String Auxiliar = "";
-        Auxiliar += String.format("- %d resumo(s) cadastrado(s)\n- ", contador_registros);
-        for (int i = 0; i < contador_registros - 1; i++) {
+        Auxiliar += String.format("- %d resumo(s) cadastrado(s)\n- ", contador_total_registros);
+        for (int i = 0; i < contador_total_registros - 1; i++) {
             Auxiliar += resumos[i].getTema() + " | ";
         }
-        Auxiliar += resumos[contador_registros - 1].getTema();
+        Auxiliar += resumos[contador_total_registros - 1].getTema();
         return Auxiliar;
     }
 
@@ -59,6 +60,7 @@ public class RegistroResumos {
      * @param resumos
      */
     public void adiciona(String tema, String resumo) {
+        contador_total_registros = (contador_registros == resumos.length) ? resumos.length : contador_registros;
         contador_registros = (contador_registros == resumos.length) ? 0 : contador_registros;
         Registro Registro = new Registro(tema, resumo);
         resumos[contador_registros] = Registro;
@@ -73,7 +75,7 @@ public class RegistroResumos {
      * @return boolean
      */
     public boolean temResumo(String tema) {
-        for (int i = 0; i < contador_registros - 1; i++) {
+        for (int i = 0; i < contador_total_registros - 1; i++) {
             if (resumos[i].getTema() == tema) {
                 return true;
             };
@@ -89,8 +91,8 @@ public class RegistroResumos {
      * @return Array[String]
      */
     public String[] busca(String chaveDeBusca) {
-        searchedResumo = new String[contador_registros];
-        for (int i = 0; i < contador_registros; i++) {
+        searchedResumo = new String[contador_total_registros];
+        for (int i = 0; i < contador_total_registros; i++) {
             if (resumos[i].getResumo().contains(chaveDeBusca)) {
                 searchedResumo[i] = resumos[i].getTema();
             }
