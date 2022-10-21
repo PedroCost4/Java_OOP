@@ -5,7 +5,7 @@ package Classes;
  *
  * @author Pedro Henrique Almeida Costa
  */
-public class Registro {
+public class Resumo {
     private String tema;
     private String resumo;
 
@@ -15,7 +15,7 @@ public class Registro {
     * @param tema 
     * @param resumo
     */
-    public Registro(String tema, String resumo) {
+    public Resumo(String tema, String resumo) {
         this.tema = tema;
         this.resumo = resumo;
     }

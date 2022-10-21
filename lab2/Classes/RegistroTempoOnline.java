@@ -34,7 +34,7 @@ public class RegistroTempoOnline {
     /** 
      * Adiciona o tempo online do aluno.
      * 
-     * @param tempo
+     * @param tempo tempo que o aluno está online
      */
     public void adicionaTempoOnline(int tempo) {
         this.TempoOnline += tempo;
@@ -44,7 +44,7 @@ public class RegistroTempoOnline {
     /** 
      * Verifica se o aluno atingiu a meta.
      * 
-     * @return boolean
+     * @return boolean se atingiu ou nâo a meta
      */
     public boolean atingiuMetaTempoOnline() {
         if (TempoOnline >= TempoOnlineEsperado)  {

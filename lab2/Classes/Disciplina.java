@@ -8,10 +8,9 @@ import java.util.Arrays;
  * @author Pedro Henrique Almeida Costa
  */
 public class Disciplina {
-    String nome_disciplina;
-    int horas;
-    double[] notas = new double[4];
-    double mediaNotas;
+    private String nome_disciplina;
+    private int horas;
+    private double[] notas = new double[4];
 
     /**
     * Constrói uma disciplina a partir de seu nome.
@@ -47,10 +46,13 @@ public class Disciplina {
      * @return boolean
      */
     public boolean aprovado() {
-        this.mediaNotas = (Arrays.stream(notas).sum()) / notas.length;
+        double mediaNotas = calculaMedia();
         return mediaNotas >= 7;
     }
 
+    private double calculaMedia() {
+        return (Arrays.stream(notas).sum()) / notas.length;
+    }
     
     /** Retorna os dados do objeto no formato.
      * 
@@ -59,7 +61,7 @@ public class Disciplina {
      * @return String
      */
     public String toString() {
-        return String.format("%s %d %.1f %s" , nome_disciplina, horas, mediaNotas, Arrays.toString(notas));
+        return String.format("%s %d %.1f %s" , nome_disciplina, horas, calculaMedia(), Arrays.toString(notas));
     }
 }
 

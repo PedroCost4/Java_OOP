@@ -6,33 +6,33 @@ package Classes;
  * @author Pedro Henrique Almeida Costa
  */
 public class RegistroResumos {
-    private int contador_registros = 0;
-    private Registro[] resumos;
+    private int indexLastResumo = 0;
+    private Resumo[] resumos;
     private String[] searchedResumo;
     private int contador_total_registros = 0;
 
     /**
      * Constrói o array de resumos de acordo com o numero maximo de resumos.
      *
-     * @param numeroMaxresumos
+     * @param numeroMaxresumos numero máximo para tamanho do array
      */
     public RegistroResumos(int numeroMaxresumos) {;
-        this.resumos = new Registro[numeroMaxresumos];
+        this.resumos = new Resumo[numeroMaxresumos];
     }
 
     /**
      * Retorna o Array contendo os objetos de resumo.
      * 
-     * @return Registro[]
+     * @return Registro[] array com todos os resumos.
      */
-    public Registro[] pegaResumos() {
+    public Resumo[] pegaResumos() {
         return resumos;
     }
 
     /**
      * Retorna a quantidade de registros cadastrados.
      * 
-     * @return int
+     * @return int quantidade de temas adicionados.
      */
     public int conta() {
         return contador_total_registros;
@@ -41,7 +41,7 @@ public class RegistroResumos {
     /**
      * Retorna uma string com os resumos cadastrados.
      * 
-     * @return String
+     * @return String com todos os temas e a quantidade de temas.
      */
     public String imprimeResumos() {
         String Auxiliar = "";
@@ -56,39 +56,39 @@ public class RegistroResumos {
     /**
      * Adiciona novos resumos no array de registros.
      * 
-     * @param tema
-     * @param resumos
+     * @param tema do resumo a ser adicionado.
+     * @param resumo conteudo do resumo a ser adicionado
      */
     public void adiciona(String tema, String resumo) {
-        contador_total_registros = (contador_registros == resumos.length) ? resumos.length : contador_registros;
-        contador_registros = (contador_registros == resumos.length) ? 0 : contador_registros;
-        Registro Registro = new Registro(tema, resumo);
-        resumos[contador_registros] = Registro;
-        contador_registros++;
+        contador_total_registros = (indexLastResumo == resumos.length) ? resumos.length : indexLastResumo+1;
+        indexLastResumo = (indexLastResumo == resumos.length) ? 0 : indexLastResumo; 
+        Resumo Registro = new Resumo(tema, resumo);
+        resumos[indexLastResumo] = Registro;
+        indexLastResumo++;
     }
 
     /**
      * Checa se tem algum resumo com o tema procurado, retornando um boolean true or
      * false.
      * 
-     * @param tema
-     * @return boolean
+     * @param tema tema para ser procurado.
+     * @return boolean se achou o tema = true, se nâo = false.
      */
     public boolean temResumo(String tema) {
         for (int i = 0; i < contador_total_registros - 1; i++) {
-            if (resumos[i].getTema() == tema) {
+            if (this.resumos[i].getTema() == tema) {
                 return true;
             };
         }
         return false;
     }
 
-    /*
+    /**
      * Retorna Array[String] com todos os resumos que contem a palavra de busca.
-     * 
-     * @param String ChaveDeBusca
-     * 
-     * @return Array[String]
+     *
+     *
+     * @param String Chave para busca do resumo com a palavra.
+     * @return Array[String] com a lista de resumos os quais tem a palavra buscada.
      */
     public String[] busca(String chaveDeBusca) {
         searchedResumo = new String[contador_total_registros];
