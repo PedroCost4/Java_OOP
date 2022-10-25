@@ -1,0 +1,48 @@
+Main
+association BEP
+---
++ opcao: str
++ scanner: Scanner
+---
++ static imprimirMenu(): void
++ static Receber Saída(): void
+---
+
+BEP
+association CompraBordado
+---
+- BordadoArray : Bordado[10]
+- CompraArray : Bordado[]
+- contadorCadastrados: int
+---
++ contadorBordadosCadastrados(): int
++ addArrayBordados(): void
+---
+
+Bordado
+---
+- linhas: int
+- colunas: int
+- tipoPonto: str
+- contadorPontos: int
+---
++ Bordado(index: int, linhas: int, colunas: int)
++ atualizarBordado(index: int, tipoPonto: str, linha: int, coluna: int): void
++ imprimirBordado(index: int): str
++ listarBordado(index: int): str
++ alterarTamanhoBordado(index: int, linha: int, coluna: int): void
++ getBordadoinArray(index: int): Bordado
++ getNumeroPontos(): int
++ toString(): str
+---
+
+CompraBordado
+association Bordado
+---
+- CompraArray: Bordado[]
+- valor: double
+---
++ CadastrarCompra(Bordados: str): void
++ imprimirCompra(): str
++ getValor(Compra: Compra): double
+---
