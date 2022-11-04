@@ -1,7 +1,5 @@
 package Classes;
 
-import java.util.ArrayList;
-
 /**
  * Uma agenda que mantém uma lista de contatos com posições. Podem existir 100 contatos. 
  * 
@@ -41,6 +39,10 @@ public class Agenda {
 		return contatos[posicao];
 	}
 
+	
+	/** 
+	 * @return Contato[]
+	 */
 	public Contato[] getFavoritos() {
 		return favoritos;
 	}
@@ -59,13 +61,19 @@ public class Agenda {
 		else if (hasContato(nome,sobrenome)) {
 			throw new IllegalArgumentException("CONTATO JA CADASTRADO");
 		}
-		else if (nome.isBlank() || sobrenome.isBlank() || telefone.isBlank()) {
+		else if (nome.isBlank() || telefone.isBlank()) {
 			throw new IllegalArgumentException("CONTATO INVALIDO");
 		}
 
 		this.contatos[posicao] = new Contato(nome, sobrenome, telefone);
 	}
 
+	
+	/** 
+	 * @param nome
+	 * @param sobrenome
+	 * @return boolean
+	 */
 	private boolean hasContato(String nome, String sobrenome) {
 		for (Contato contato : contatos) {
 			if (contato != null && 
@@ -76,7 +84,13 @@ public class Agenda {
 		}
 		return false;
 	}
-
+	
+	/** 
+	 * Adiciona o favorito na lista de favoritos além de mudar o atributo do objeto como true para favorito.
+	 * 
+	 * @param index
+	 * @param posicao
+	 */
 	public void adicionaFavorito(int index, int posicao) {
 		if (index < 0 || index >= TAMANHO_AGENDA){
 			throw new IllegalArgumentException("Posição inválida");
@@ -92,6 +106,13 @@ public class Agenda {
 
 	}
 
+	
+	/** 
+	 * Remove o favorito na lista de favoritos além de mudar o atributo do objeto como false para favorito
+	 * 
+	 * @param index
+	 * @param posicao
+	 */
 	public void removeFavorito(int index, int posicao) {
 		if (index < 0 || index >= TAMANHO_AGENDA){
 			throw new IllegalArgumentException("Posição inválida");
