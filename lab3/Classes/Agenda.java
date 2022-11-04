@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.ArrayList;
+
 /**
  * Uma agenda que mantém uma lista de contatos com posições. Podem existir 100 contatos. 
  * 
@@ -10,13 +12,16 @@ public class Agenda {
 	
 	private static final int TAMANHO_AGENDA = 100;
 	
-	private Contato[] contatos; //apenas uma simplificacao de contato
+	private Contato[] contatos;  //apenas uma simplificacao de contato
+
+	private Contato[] favoritos;
 
 	/**
 	 * Cria uma agenda.
 	 */
 	public Agenda() {
 		this.contatos = new Contato[TAMANHO_AGENDA];
+		this.favoritos = new Contato[10];
 	}
 	
 	/**
@@ -36,6 +41,10 @@ public class Agenda {
 		return contatos[posicao];
 	}
 
+	public Contato[] getFavoritos() {
+		return favoritos;
+	}
+
 	/**
 	 * Cadastra um contato em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior. 
 	 * @param posicao Posição do contato.
@@ -45,10 +54,13 @@ public class Agenda {
 	 */
 	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
 		if (posicao < 0 || posicao >= TAMANHO_AGENDA){
-			throw new IllegalArgumentException("Posição inválida");
+			throw new IllegalArgumentException("POSICÃO INVALIDA");
 		}
-		if (hasContato(nome,sobrenome)) {
+		else if (hasContato(nome,sobrenome)) {
 			throw new IllegalArgumentException("CONTATO JA CADASTRADO");
+		}
+		else if (nome.isBlank() || sobrenome.isBlank() || telefone.isBlank()) {
+			throw new IllegalArgumentException("CONTATO INVALIDO");
 		}
 
 		this.contatos[posicao] = new Contato(nome, sobrenome, telefone);
@@ -56,11 +68,40 @@ public class Agenda {
 
 	private boolean hasContato(String nome, String sobrenome) {
 		for (Contato contato : contatos) {
-			if (contato != null && contato.getNome().equals(nome) && contato.getSobrenome().equals(sobrenome)) {
+			if (contato != null && 
+			contato.getNome().equals(nome) && 
+			contato.getSobrenome().equals(sobrenome)) {
                 return true;
             }
 		}
 		return false;
+	}
+
+	public void adicionaFavorito(int index, int posicao) {
+		if (index < 0 || index >= TAMANHO_AGENDA){
+			throw new IllegalArgumentException("Posição inválida");
+		}
+		else if (contatos[index] == null) {
+			throw new IllegalArgumentException("CONTATO NAO CADASTRADO");
+		}
+		else if (contatos[index].isFavorito()) {
+			removeFavorito(index, posicao);
+		}
+		contatos[index].setFavorito(true);
+		favoritos[posicao] = contatos[index];
+
+	}
+
+	public void removeFavorito(int index, int posicao) {
+		if (index < 0 || index >= TAMANHO_AGENDA){
+			throw new IllegalArgumentException("Posição inválida");
+		}
+		else if (contatos[index] == null) {
+			throw new IllegalArgumentException("CONTATO NAO CADASTRADO");
+		}
+		contatos[index].setFavorito(false);
+		favoritos[posicao] = null;
+
 	}
 
 }

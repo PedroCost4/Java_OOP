@@ -2,8 +2,9 @@ package Classes;
 
 public class Contato {
     private String nome;
-    public String sobrenome;
-    public String telefone;
+    private String sobrenome;
+    private String telefone;
+    private boolean favorito;
 
 
     public Contato(String nome, String sobrenome, String telefone) {
@@ -17,6 +18,10 @@ public class Contato {
         this.telefone = telefone;
     }
 
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -27,6 +32,10 @@ public class Contato {
 
     public String getTelefone() {
         return this.telefone;
+    }
+
+    public boolean isFavorito() {
+        return this.favorito;
     }
 
     @Override

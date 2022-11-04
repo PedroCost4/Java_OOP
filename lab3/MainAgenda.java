@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Interface com menus texto para manipular uma agenda de contatos.
  * 
- * @author nazarenoandrade
+ * @author 
  *
  */
 public class MainAgenda {
@@ -49,6 +49,9 @@ public class MainAgenda {
 						"(L)istar Contatos\n" + 
 						"(E)xibir Contato\n" + 
 						"(S)air\n" + 
+						"(F)avoritos\n" + 
+						"(A)dicionar Favorito\n" +
+						"(R)emover Favorito\n" +
 						"\n" + 
 						"Opção> ");
 		return scanner.next().toUpperCase();
@@ -75,8 +78,17 @@ public class MainAgenda {
 		case "S":
 			sai();
 			break;
+		case "F":
+			listaFavoritos(agenda);
+			break;
+		case "A":
+			adicionaFavorito(agenda, scanner);
+			break;
+		case "R":
+			removeFavorito(agenda, scanner);
+			break;
 		default:
-			System.out.println("Opção inválida!");
+			System.out.println("OPÇÃO INVAlIDA!");
 		}
 	}
 
@@ -102,10 +114,12 @@ public class MainAgenda {
 	 * @param scanner Scanner para capturar qual contato.
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
-		System.out.print("\nQual contato> ");
-		int posicao = scanner.nextInt();
-		Contato contato = agenda.getContato(posicao);
-		System.out.println("Dados do contato:\n" + contato);
+		System.out.println("\nQual contato> ");
+		int posicao = scanner.nextInt() - 1;
+		if (agenda.getContato(posicao) != null && agenda.getContato(posicao).isFavorito()) {
+			System.out.print("❤️  ");
+		}
+		System.out.println((agenda.getContato(posicao) != null) ? agenda.getContato(posicao): "POSIÇÃO INVÁLIDA!");
 	}
 
 	/**
@@ -116,7 +130,7 @@ public class MainAgenda {
 	 * @return A String formatada.
 	 */
 	private static String formataContato(int posicao, Contato contato) {
-		return posicao + " - " + contato.getNome();
+		return posicao + " - " + contato.getNome() + " " + contato.getSobrenome();
 	}
 
 	/**
@@ -126,22 +140,22 @@ public class MainAgenda {
 	 * @param scanner Scanner para pedir informações do contato.
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
-		System.out.print("\nPosição na agenda> ");
-		int posicao = scanner.nextInt();
-		System.out.print("\nNome> ");
-		String nome = scanner.next();
+		System.out.print("\nPosição> ");
+		int posicao = scanner.nextInt() - 1;
 		scanner.nextLine();
+		System.out.print("\nNome> ");
+		String nome = scanner.nextLine();
 		System.out.print("\nSobrenome> ");
 		String sobrenome = scanner.nextLine();
 		System.out.print("\nTelefone> ");
-		String telefone = scanner.next();
+		String telefone = scanner.nextLine();	
 
 		try{
 			agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+			System.out.println("CADASTRO REALIZADO");
 		}catch (IllegalArgumentException e){
 			System.out.println(e.getMessage());
 		}
-		
 	}
 
 	/**
@@ -161,8 +175,41 @@ public class MainAgenda {
 	 */
 	private static void carregaAgenda(String arquivoContatos, Agenda agenda) throws FileNotFoundException, IOException {
 		LeitorDeAgenda leitor = new LeitorDeAgenda();
-		
 		int carregados =  leitor.carregaContatos(arquivoContatos, agenda);
 		System.out.println("Carregamos " + carregados + " registros.");
+	}
+
+	private static void listaFavoritos(Agenda agenda) {
+		Contato[] contatos = agenda.getFavoritos();
+		System.out.println("\nLista de favoritos: ");
+		for (int i = 0; i < contatos.length; i++) {
+			if (contatos[i] != null) {
+				System.out.println(formataContato(i, contatos[i]));
+			}
+		}
+	}
+
+	private static void adicionaFavorito(Agenda agenda, Scanner scanner) {
+		System.out.print("\nQual contato> ");
+		int posicao = scanner.nextInt() - 1;
+		System.out.print("\nQual posicao> ");
+		int index = scanner.nextInt() - 1;
+		if (agenda.getContato(posicao) != null) {
+			agenda.adicionaFavorito(posicao, index);
+		} else {
+			System.out.println("POSIÇÃO INVÁLIDA!");
+		}
+	}
+
+	private static void removeFavorito(Agenda agenda, Scanner scanner) {
+		System.out.print("\nQual contato> ");
+		int posicao = scanner.nextInt() - 1;
+		System.out.print("\nQual posicao> ");
+		int index = scanner.nextInt() - 1;
+		if (agenda.getContato(posicao) != null) {
+			agenda.removeFavorito(posicao, index);
+		} else {
+			System.out.println("POSIÇÃO INVÁLIDA!");
+		}
 	}
 }
