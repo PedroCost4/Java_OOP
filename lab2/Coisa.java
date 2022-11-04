@@ -5,7 +5,7 @@ import Classes.*;
  * 
  * @author Pedro Henrique Almeida Costa - 121210175
  */
-public class Coisa {
+public class Coisa{
   public static void main(String[] args) {
       registrarDescanso();
       System.out.println("-----");
