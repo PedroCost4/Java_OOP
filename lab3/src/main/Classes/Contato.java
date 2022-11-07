@@ -30,19 +30,8 @@ public class Contato {
         this.telefone = telefone;
     }
 
-    
     /** 
-     * define o boolean se é favorito ou não
-     * 
-     * @param favorito
-     */
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
-    }
-
-    
-    /** 
-     * define o nome do contato
+     * define o nome do contato.
      * 
      * @return String
      */
@@ -50,9 +39,8 @@ public class Contato {
         return this.nome;
     }
 
-    
     /** 
-     * define o sobrenome do contato
+     * define o sobrenome do contato.
      * 
      * @return String
      */
@@ -60,9 +48,18 @@ public class Contato {
         return this.sobrenome;
     }
 
+     /*
+     * retorna o nome completo do contato.
+     * 
+     * @return String
+     */
+    public String nomeCompleto() {
+        return this.nome + " " + this.sobrenome;
+    }
+
     
     /** 
-     * define o telefone do contato
+     * define o telefone do contato.
      * 
      * @return String
      */
@@ -70,7 +67,24 @@ public class Contato {
         return this.telefone;
     }
 
-    
+    /** 
+     * define um novo telefone para o contato.
+     * 
+     * @return String
+     */
+    public void setNewTelefone(String newTelefone) {
+        this.telefone = newTelefone;
+    }
+
+        /** 
+     * define um boolean se o contato é favorito ou não.
+     * 
+     * @param favorito
+     */
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
     /** 
      * checa se o contato é favorito ou não.
      * 
@@ -80,14 +94,31 @@ public class Contato {
         return this.favorito;
     }
 
-    
+    /*
+     * Compara dois contatos e diz se é igual pelo nome e sobrenome
+     * 
+     * @return Boolean
+     */
+    public boolean equals(Contato contato) {
+        if (this.nome == contato.getNome() && this.sobrenome == contato.getSobrenome()) {
+            return true;
+        }
+        return false;
+    }
+   
     /** 
-     * toString do contato
+     * toString do contato.
      * 
      * @return String
      */
     @Override
     public String toString() {
+        if (this.favorito) {
+            return String.format("❤️  %s %s\n%s", this.nome, this.sobrenome, this.telefone);
+        }
         return String.format("%s %s\n%s", this.nome, this.sobrenome, this.telefone);
+        
     }
+
 } 
+ 

@@ -1,4 +1,3 @@
-
 import Classes.*;
 
 import java.io.FileNotFoundException;
@@ -13,6 +12,9 @@ import java.util.Scanner;
  */
 public class MainAgenda {
 
+	/** 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Agenda agenda = new Agenda();
 
@@ -70,6 +72,9 @@ public class MainAgenda {
 		case "C":
 			cadastraContato(agenda, scanner);
 			break;
+		case "RC":
+			removeContato(agenda, scanner);
+			break;
 		case "L":
 			listaContatos(agenda);
 			break;
@@ -117,16 +122,13 @@ public class MainAgenda {
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
 		System.out.println("\nQual contato> ");
 		int posicao = scanner.nextInt() - 1;
-		if (agenda.getContato(posicao) != null && agenda.getContato(posicao).isFavorito()) {
-			System.out.print("❤️  ");
-		}
 		System.out.println((agenda.getContato(posicao) != null) ? agenda.getContato(posicao): "POSIÇÃO INVÁLIDA!");
 	}
 
 	/**
 	 * Formata um contato para impressão na interface. 
 	 * 
-	 * @param posicao A posição do contato (que é exibida)/
+	 * @param posicao A posição do contato (que é exib	ida)/
 	 * @param contato O contato a ser impresso.
 	 * @return A String formatada.
 	 */
@@ -159,6 +161,22 @@ public class MainAgenda {
 		}
 	}
 
+	
+	/** 
+	 * @param agenda
+	 * @param scanner
+	 */
+	private static void removeContato(Agenda agenda, Scanner scanner) {
+		System.out.print("\nPosição> ");
+		int posicao = scanner.nextInt() - 1;
+
+		try {
+			agenda.delContato(posicao);
+		}catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 	/**
 	 * Sai da aplicação.
 	 */
@@ -180,6 +198,12 @@ public class MainAgenda {
 		System.out.println("Carregamos " + carregados + " registros.");
 	}
 
+	
+	/** 
+	 * Printa todos os nomes da lista de favoritos.
+	 * 
+	 * @param agenda
+	 */
 	private static void listaFavoritos(Agenda agenda) {
 		Contato[] contatos = agenda.getFavoritos();
 		System.out.println("\nLista de favoritos: ");
@@ -190,6 +214,14 @@ public class MainAgenda {
 		}
 	}
 
+
+	
+	/** 
+	 * pede informações e adiciona o contato na lista de favoritos
+	 * 
+	 * @param agenda
+	 * @param scanner
+	 */
 	private static void adicionaFavorito(Agenda agenda, Scanner scanner) {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt() - 1;
@@ -202,6 +234,13 @@ public class MainAgenda {
 		}
 	}
 
+	
+	/** 
+	 * Pede informações e remove um contato da lista de favoritos.
+	 * 
+	 * @param agenda
+	 * @param scanner
+	 */
 	private static void removeFavorito(Agenda agenda, Scanner scanner) {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt() - 1;
