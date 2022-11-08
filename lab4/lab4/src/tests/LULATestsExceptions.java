@@ -53,7 +53,7 @@ public class LULATestsExceptions {
     @Test
     public void testCadastraComitivaContatoInvalido() {
         exception = assertThrows(IllegalArgumentException.class, () -> {
-            lula.cadastraComitiva(0, "Comitiva 1", 10, "");
+            lula.cadastraComitiva(0, "Comitiva 1", 10, "   ");
         });
         assertEquals("Descrição ou contato inválidos", exception.getMessage());
     }
@@ -65,5 +65,22 @@ public class LULATestsExceptions {
         });
         assertEquals("Número de integrantes inválido", exception.getMessage());
     }
-    
+
+    @Test
+    public void testCadastraLocalDescricaoInvalida() {
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            lula.cadastraLocal("BG", "", "1234");
+        });
+        assertEquals("Local ou ramal inválidos", exception.getMessage());
+    }
+
+    @Test
+    public void testCadastraLocalRamalInvalido() {
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            lula.cadastraLocal("BG", "Sala de Reuniões", "   ");
+        });
+        assertEquals("Local ou ramal inválidos", exception.getMessage());
+    }
+
+   
 }
