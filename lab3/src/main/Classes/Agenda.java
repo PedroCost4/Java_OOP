@@ -134,22 +134,22 @@ public class Agenda {
 	/** 
 	 * Adiciona o favorito na lista de favoritos além de mudar o atributo do objeto como true para favorito.
 	 * 
-	 * @param index
-	 * @param posicao
+	 * @param posicaoContato
+	 * @param posicaoFavoritos
 	 */
-	public void adicionaFavorito(int index, int posicao) {
+	public void adicionaFavorito(int posicaoContato, int posicaoFavoritos) {
 
-		if (index < 0 || index >= TAMANHO_AGENDA || posicao < 0 || posicao > 10) {
+		if (posicaoContato < 0 || posicaoContato >= TAMANHO_AGENDA || posicaoFavoritos < 0 || posicaoFavoritos > 10) {
 			throw new IllegalArgumentException("POSIÇÃO INVÁLIDA");
 		}
-		else if (contatos[index] == null) {
+		else if (contatos[posicaoContato] == null) {
 			throw new IllegalArgumentException("CONTATO NAO CADASTRADO");
 		}
-		else if (contatos[index].isFavorito()) {
-			removeFavorito(index, posicao);
+		else if (contatos[posicaoContato].isFavorito()) {
+			removeFavorito(posicaoContato, posicaoFavoritos);
 		}
-		contatos[index].setFavorito(true);
-		favoritos[posicao] = contatos[index];
+		contatos[posicaoContato].setFavorito(true);
+		favoritos[posicaoFavoritos] = contatos[posicaoContato];
 
 	}
 
@@ -157,18 +157,18 @@ public class Agenda {
 	/** 
 	 * Remove o favorito na lista de favoritos além de mudar o atributo do objeto como false para favorito
 	 * 
-	 * @param index
-	 * @param posicao
+	 * @param posicaoContato
+	 * @param posicaoFavoritos
 	 */
-	public void removeFavorito(int index, int posicao) {
-		if (index < 0 || index >= TAMANHO_AGENDA || posicao < 0 || posicao > 10) {
+	public void removeFavorito(int posicaoContato, int posicaoFavoritos) {
+		if (posicaoContato < 0 || posicaoContato >= TAMANHO_AGENDA || posicaoFavoritos < 0 || posicaoFavoritos > 10) {
 			throw new IllegalArgumentException("POSIÇÃO INVÁLIDA");
 		}
-		else if (contatos[index] == null) {
+		else if (contatos[posicaoContato] == null) {
 			throw new IllegalArgumentException("CONTATO NAO CADASTRADO");
 		}
-		contatos[index].setFavorito(false);
-		favoritos[posicao] = null;
+		contatos[posicaoContato].setFavorito(false);
+		favoritos[posicaoFavoritos] = null;
 
 	}
 
