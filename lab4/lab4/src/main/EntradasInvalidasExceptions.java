@@ -47,6 +47,16 @@ public class EntradasInvalidasExceptions {
         }
     }
 
+    public static void entradasInvalidasRegistraComitivas (Comitiva[] comitivas, LocalVisitacao[] locais, int idComitiva, String idLocal) {
+        if (idComitiva < 0 || idComitiva > 99 || comitivas[idComitiva] == null) {
+            throw new IndexOutOfBoundsException("Comitiva não cadastrada");
+        }
+
+        if (!hasLocal(locais, idLocal)) {
+            throw new IllegalArgumentException("Local não cadastrado");
+        }
+    }
+
     private static boolean hasLocal(LocalVisitacao[] locais, String idUnico) {
         for (int i = 0; i < locais.length; i++) {
             if (locais[i] != null && locais[i].getIdUnico().equals(idUnico)) {

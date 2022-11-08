@@ -22,6 +22,10 @@ public class Comitiva {
         return this.descricaoComitiva;
     }
 
+    public void atualizaDescricao(String descricaoComitiva) {
+        this.descricaoComitiva = descricaoComitiva;
+    }
+
     public int getNumIntegrantes() {
         return this.numIntegrantes;
     }
