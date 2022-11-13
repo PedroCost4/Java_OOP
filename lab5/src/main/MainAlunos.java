@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import Classes.*;
 
-public class Controller {
+public class MainAlunos {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

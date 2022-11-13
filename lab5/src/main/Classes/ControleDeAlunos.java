@@ -39,14 +39,11 @@ public class ControleDeAlunos {
     }
 
     public void addAlunoEmGrupo(String tema, String matricula, String curso) {
-        
         for (Grupo grupo: grupos) {
             if (grupo.getTema().equals(tema)) {
                 grupo.addAluno(tema, matricula, curso);
             }
         }
-        
-        
     }
 
     public String exibirAluno(String matricula) {
