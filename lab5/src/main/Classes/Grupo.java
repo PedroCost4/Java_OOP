@@ -18,8 +18,8 @@ public class Grupo {
         return alunos;
     }
 
-    public void addAluno(String matricula, String nome, String curso) {
-        this.alunos.put(matricula, new Aluno(nome, curso));
+    public void addAluno(Aluno aluno) {
+        this.alunos.put(aluno.getMatricula(), aluno);
     }
 
     public Integer getTamanho() {

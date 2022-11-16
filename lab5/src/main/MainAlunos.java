@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.HashMap;
 
 import Classes.*;
 
@@ -15,7 +16,7 @@ public class MainAlunos {
     }
 
     private static String menu() {
-        String menu = "(C)adastrar Aluno\n" +
+        String menu = "\n(C)adastrar Aluno\n" +
                       "(E)xibir Aluno\n" +
                       "(N)ovo Grupo\n" +
                       "(A)locar Aluno no Grupo e (P)ertincencia de Grupos\n" +
@@ -35,11 +36,14 @@ public class MainAlunos {
             case "N":
                 novoGrupo(scanner, control);
                 break;
+            case "L":
+                listarAlunos(control);
+                break;
             case "A":
-                //alocarAluno();
+                alocarAluno(scanner, control);
                 break;
             case "P":
-                //pertinenciaGrupo();
+                pertinenciaGrupo(scanner, control);
                 break;
             case "S":
                 sai();
@@ -82,8 +86,11 @@ public class MainAlunos {
 
     }
 
-    public void listarAlunos() {
-        
+    public static void listarAlunos(ControleDeAlunos control) {
+        HashMap<String, Aluno> alunos = control.getAlunos();
+        for (String matricula: alunos.keySet()) {
+            System.out.println(matricula + " " + alunos.get(matricula));
+        }
     }
 
     private static void novoGrupo(Scanner scanner, ControleDeAlunos control) {
@@ -91,9 +98,36 @@ public class MainAlunos {
         String tema = scanner.nextLine();
         System.out.println("Tamanho: ");
         Integer tamanho = scanner.nextInt();
+        scanner.nextLine();
         try {
             control.cadastrarGrupo(tema, tamanho);
             System.out.println("CADASTRO REALIZADO!");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void alocarAluno(Scanner scanner, ControleDeAlunos control) {
+        System.out.println("Matrícula: ");
+        String matricula = scanner.nextLine();
+        System.out.println("Grupo: ");
+        String grupo = scanner.nextLine();
+        try {
+            control.addAlunoEmGrupo(grupo, matricula);
+            System.out.println("ALUNO ALOCADO!");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void pertinenciaGrupo(Scanner scanner, ControleDeAlunos control) {
+        System.out.println("Grupo: ");
+        String grupo = scanner.nextLine();
+        System.out.println("Aluno: ");
+        String aluno = scanner.nextLine();
+
+        try {
+            control.pertinenciaGrupo(grupo, aluno);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

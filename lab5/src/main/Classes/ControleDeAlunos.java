@@ -14,7 +14,11 @@ public class ControleDeAlunos {
         this.alunos = new HashMap<String, Aluno>();
     }
 
-    public void cadastrarAluno(String nome, String matricula, String curso) {
+    public HashMap<String, Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void cadastrarAluno(String matricula, String nome, String curso) {
         if (matricula.isBlank() || nome.isBlank() || curso.isBlank()) {
             throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
         }
@@ -22,7 +26,7 @@ public class ControleDeAlunos {
             throw new IllegalArgumentException("MATRÍCULA JÁ CADASTRADA");
         }
         
-        alunos.put(matricula, new Aluno(nome, curso));
+        alunos.put(matricula, new Aluno(matricula, nome, curso));
     }
 
     public void cadastrarGrupo(String tema, Integer tamanho) {
@@ -36,10 +40,22 @@ public class ControleDeAlunos {
         grupos.add(grupo);
     }
 
-    public void addAlunoEmGrupo(String tema, String matricula, String curso) {
+    public void addAlunoEmGrupo(String tema, String matricula) {
         for (Grupo grupo: grupos) {
             if (grupo.getTema().equals(tema)) {
-                grupo.addAluno(tema, matricula, curso);
+                grupo.addAluno(alunos.get(matricula));
+            }
+        }
+    }
+
+    public void pertinenciaGrupo(String tema, String matricula) {
+        for (Grupo grupo: grupos) {
+            if (grupo.getTema().equals(tema)) {
+                if (grupo.hasAluno(matricula)) {
+                    throw new IllegalArgumentException("ALUNO JÁ CADASTRADO NO GRUPO");
+                } else {
+                    throw new IllegalArgumentException("ALUNO NÃO CADASTRADO NO GRUPO");
+                }
             }
         }
     }
