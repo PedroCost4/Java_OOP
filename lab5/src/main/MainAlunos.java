@@ -82,6 +82,10 @@ public class MainAlunos {
 
     }
 
+    public void listarAlunos() {
+        
+    }
+
     private static void novoGrupo(Scanner scanner, ControleDeAlunos control) {
         System.out.println("Tema: ");
         String tema = scanner.nextLine();

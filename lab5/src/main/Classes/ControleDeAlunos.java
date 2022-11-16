@@ -22,9 +22,7 @@ public class ControleDeAlunos {
             throw new IllegalArgumentException("MATRÍCULA JÁ CADASTRADA");
         }
         
-
-        Aluno aluno = new Aluno(nome, curso);
-        alunos.put(matricula, aluno);
+        alunos.put(matricula, new Aluno(nome, curso));
     }
 
     public void cadastrarGrupo(String tema, Integer tamanho) {
