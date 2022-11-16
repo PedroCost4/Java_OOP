@@ -5,6 +5,10 @@ import Classes.*;
 
 public class MainAlunos {
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ControleDeAlunos control = new ControleDeAlunos();
@@ -15,6 +19,10 @@ public class MainAlunos {
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     private static String menu() {
         String menu = "\n(C)adastrar Aluno\n" +
                       "(E)xibir Aluno\n" +
@@ -24,6 +32,11 @@ public class MainAlunos {
         return menu;
     }
 
+    
+    /** 
+     * @param scanner
+     * @param control
+     */
     private static void switchMenu(Scanner scanner, ControleDeAlunos control) {
         String opcao = scanner.nextLine();
         switch (opcao) {
@@ -58,6 +71,11 @@ public class MainAlunos {
         System.exit(0);
     }
 
+    
+    /** 
+     * @param scanner
+     * @param control
+     */
     private static void cadastrarAluno(Scanner scanner, ControleDeAlunos control) {
             System.out.println("Matrícula: ");
             String matricula = scanner.nextLine();
@@ -74,6 +92,11 @@ public class MainAlunos {
             }
         }
 
+    
+    /** 
+     * @param scanner
+     * @param control
+     */
     private static void exibirAluno(Scanner scanner, ControleDeAlunos control) {
         System.out.println("Matrícula: ");
         String matricula = scanner.nextLine();
@@ -86,6 +109,10 @@ public class MainAlunos {
 
     }
 
+    
+    /** 
+     * @param control
+     */
     public static void listarAlunos(ControleDeAlunos control) {
         HashMap<String, Aluno> alunos = control.getAlunos();
         for (String matricula: alunos.keySet()) {
@@ -93,6 +120,11 @@ public class MainAlunos {
         }
     }
 
+    
+    /** 
+     * @param scanner
+     * @param control
+     */
     private static void novoGrupo(Scanner scanner, ControleDeAlunos control) {
         System.out.println("Tema: ");
         String tema = scanner.nextLine();
@@ -107,6 +139,11 @@ public class MainAlunos {
         }
     }
 
+    
+    /** 
+     * @param scanner
+     * @param control
+     */
     public static void alocarAluno(Scanner scanner, ControleDeAlunos control) {
         System.out.println("Matrícula: ");
         String matricula = scanner.nextLine();
@@ -120,6 +157,11 @@ public class MainAlunos {
         }
     }
 
+    
+    /** 
+     * @param scanner
+     * @param control
+     */
     public static void pertinenciaGrupo(Scanner scanner, ControleDeAlunos control) {
         System.out.println("Grupo: ");
         String grupo = scanner.nextLine();

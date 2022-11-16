@@ -14,26 +14,52 @@ public class Grupo {
         this.tema = tema;
     }
 
+    
+    /** 
+     * @return HashMap<String, Aluno>
+     */
     public HashMap<String, Aluno> getAlunos() {
         return alunos;
     }
 
+    
+    /** 
+     * @param aluno
+     */
     public void addAluno(Aluno aluno) {
         this.alunos.put(aluno.getMatricula(), aluno);
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public Integer getTamanho() {
         return tamanho;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getTema() {
         return tema;
     }
     
+    
+    /** 
+     * @param matricula
+     * @return boolean
+     */
     public boolean hasAluno(String matricula) {
         return alunos.containsKey(matricula);
     }
 
+    
+    /** 
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Grupo) {
@@ -43,6 +69,10 @@ public class Grupo {
         return false;
     }
 
+    
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode() {
         final int prime = 31;

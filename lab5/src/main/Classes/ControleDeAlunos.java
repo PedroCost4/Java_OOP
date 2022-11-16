@@ -14,10 +14,20 @@ public class ControleDeAlunos {
         this.alunos = new HashMap<String, Aluno>();
     }
 
+    
+    /** 
+     * @return HashMap<String, Aluno>
+     */
     public HashMap<String, Aluno> getAlunos() {
         return alunos;
     }
 
+    
+    /** 
+     * @param matricula
+     * @param nome
+     * @param curso
+     */
     public void cadastrarAluno(String matricula, String nome, String curso) {
         if (matricula.isBlank() || nome.isBlank() || curso.isBlank()) {
             throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
@@ -29,6 +39,11 @@ public class ControleDeAlunos {
         alunos.put(matricula, new Aluno(matricula, nome, curso));
     }
 
+    
+    /** 
+     * @param tema
+     * @param tamanho
+     */
     public void cadastrarGrupo(String tema, Integer tamanho) {
         if (tema.isBlank() || tamanho.equals(null) || tamanho < 0) {
             throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
@@ -40,6 +55,11 @@ public class ControleDeAlunos {
         grupos.add(grupo);
     }
 
+    
+    /** 
+     * @param tema
+     * @param matricula
+     */
     public void addAlunoEmGrupo(String tema, String matricula) {
         for (Grupo grupo: grupos) {
             if (grupo.getTema().equals(tema)) {
@@ -48,6 +68,11 @@ public class ControleDeAlunos {
         }
     }
 
+    
+    /** 
+     * @param tema
+     * @param matricula
+     */
     public void pertinenciaGrupo(String tema, String matricula) {
         for (Grupo grupo: grupos) {
             if (grupo.getTema().equals(tema)) {
@@ -60,10 +85,21 @@ public class ControleDeAlunos {
         }
     }
 
+    
+    /** 
+     * @param matricula
+     * @return String
+     */
     public String exibirAluno(String matricula) {
         return "Aluno: " + matricula + " " + alunos.get(matricula).toString();
     }
 
+    
+    /** 
+     * @param tema
+     * @param matricula
+     * @return boolean
+     */
     public boolean hasAlunoInGrupo(String tema, String matricula) {
         for (Grupo grupo: grupos) {
             if (grupo.getTema().equals(tema)) {

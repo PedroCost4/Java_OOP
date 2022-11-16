@@ -12,18 +12,34 @@ public class Aluno {
         this.curso = curso;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getMatricula() {
         return matricula;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getNome() {
         return nome;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getCurso() {
         return curso;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return getNome() + " - " + getCurso();
