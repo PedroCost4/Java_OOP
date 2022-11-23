@@ -2,15 +2,15 @@ package Classes;
 
 
 import java.util.HashMap;
-import java.util.HashSet;
+
 
 public class ControleDeAlunos {
     
-    private HashSet<Grupo> grupos;
+    private HashMap<String, Grupo> grupos;
     private HashMap<String, Aluno> alunos;
 
     public ControleDeAlunos() {
-        this.grupos = new HashSet<Grupo>();
+        this.grupos = new HashMap<String, Grupo>();
         this.alunos = new HashMap<String, Aluno>();
     }
 
@@ -24,11 +24,19 @@ public class ControleDeAlunos {
 
     
     /** 
+     * @return HashMap<String, Grupo>
+     */
+    public HashMap<String, Grupo> getGrupos() {
+        return grupos;
+    }
+
+    
+    /** 
      * @param matricula
      * @param nome
      * @param curso
      */
-    public void cadastrarAluno(String matricula, String nome, String curso) {
+    public String cadastrarAluno(String matricula, String nome, String curso) {
         if (matricula.isBlank() || nome.isBlank() || curso.isBlank()) {
             throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
         }
@@ -37,6 +45,8 @@ public class ControleDeAlunos {
         }
         
         alunos.put(matricula, new Aluno(matricula, nome, curso));
+
+        return "Aluno cadastrado com sucesso!";
     }
 
     
@@ -44,15 +54,17 @@ public class ControleDeAlunos {
      * @param tema
      * @param tamanho
      */
-    public void cadastrarGrupo(String tema, Integer tamanho) {
-        if (tema.isBlank() || tamanho.equals(null) || tamanho < 0) {
-            throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
+    public String cadastrarGrupo(String tema, Integer tamanho) {
+        if (tema.isBlank()) {
+            throw new IllegalArgumentException("TEMA VAZIA");
         }
-        if (grupos.contains(new Grupo(tema, tamanho))) {
+        if (grupos.containsKey(tema)) {
             throw new IllegalArgumentException("GRUPO JÁ CADASTRADO");
         }
         Grupo grupo = new Grupo(tema, tamanho);
-        grupos.add(grupo);
+        grupos.put(tema, grupo);
+
+        return "Grupo Cadastrado com sucesso!";
     }
 
     
@@ -60,12 +72,22 @@ public class ControleDeAlunos {
      * @param tema
      * @param matricula
      */
-    public void addAlunoEmGrupo(String tema, String matricula) {
-        for (Grupo grupo: grupos) {
-            if (grupo.getTema().equals(tema)) {
-                grupo.addAluno(alunos.get(matricula));
-            }
+    public String alocarAluno(String matricula, String tema) {
+        if (tema.isBlank() || matricula.isBlank()) {
+            throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
         }
+        if (!alunos.containsKey(matricula)) {
+            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO");
+        }
+        Grupo grupo = hasGrupo(tema);
+
+        if (grupo.hasAluno(matricula)) {
+            throw new IllegalArgumentException("ALUNO JÁ CADASTRADO NO GRUPO");
+        }
+
+        grupo.addAluno(matricula);
+
+        return "Aluno Alocado com sucesso!";
     }
 
     
@@ -73,15 +95,19 @@ public class ControleDeAlunos {
      * @param tema
      * @param matricula
      */
-    public void pertinenciaGrupo(String tema, String matricula) {
-        for (Grupo grupo: grupos) {
-            if (grupo.getTema().equals(tema)) {
-                if (grupo.hasAluno(matricula)) {
-                    throw new IllegalArgumentException("ALUNO JÁ CADASTRADO NO GRUPO");
-                } else {
-                    throw new IllegalArgumentException("ALUNO NÃO CADASTRADO NO GRUPO");
-                }
-            }
+    public boolean pertinenciaGrupo(String matricula, String tema) {
+        if (tema.isBlank() || matricula.isBlank()) {
+            throw new IllegalArgumentException("ALGUMA ENTRADA VAZIA");
+        }
+        if (!alunos.containsKey(matricula)) {
+            throw new IllegalArgumentException("ALUNO NÃO CADASTRADO");
+        }
+
+        Grupo grupo = hasGrupo(tema);
+        if (grupo.hasAluno(matricula)) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -96,17 +122,37 @@ public class ControleDeAlunos {
 
     
     /** 
-     * @param tema
      * @param matricula
-     * @return boolean
+     * @return String
      */
-    public boolean hasAlunoInGrupo(String tema, String matricula) {
-        for (Grupo grupo: grupos) {
-            if (grupo.getTema().equals(tema)) {
-                return grupo.hasAluno(matricula);
+    public String gruposDoAluno(String matricula) {
+        String saida = "";
+        boolean checker = false;
+        for (Grupo grupo : grupos.values()) {
+            if (grupo.hasAluno(matricula)) {
+                saida += grupo.toString() + System.lineSeparator();
+                checker = true;
             }
         }
-        return false;
+        if (!checker){
+            return "Aluno não pertence a nenhum grupo.";
+        }
+
+        return saida;
+    }
+
+
+    
+    /** 
+     * @param tema
+     * @return Grupo
+     */
+    private Grupo hasGrupo(String tema) {
+        if (grupos.containsKey(tema)){
+            return grupos.get(tema);
+        } else {
+            throw new IllegalArgumentException("GRUPO NÃO CADASTRADO");
+        }
     }
 
     }

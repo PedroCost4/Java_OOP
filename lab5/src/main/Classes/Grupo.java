@@ -1,16 +1,16 @@
 package Classes;
 
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class Grupo {
     
-    private HashMap<String, Aluno> alunos; 
+    private HashSet<String> alunos; 
     private Integer tamanho;
     private String tema;
 
     public Grupo(String tema, Integer tamanho) {
-        this.alunos = new HashMap<String,Aluno>();
-        this.tamanho = (tamanho == null) ? 0 : tamanho;
+        this.alunos = new HashSet<String>();
+        this.tamanho = tamanho;
         this.tema = tema;
     }
 
@@ -18,7 +18,7 @@ public class Grupo {
     /** 
      * @return HashMap<String, Aluno>
      */
-    public HashMap<String, Aluno> getAlunos() {
+    public HashSet<String> getAlunos() {
         return alunos;
     }
 
@@ -26,13 +26,19 @@ public class Grupo {
     /** 
      * @param aluno
      */
-    public void addAluno(Aluno aluno) {
-        this.alunos.put(aluno.getMatricula(), aluno);
+    public void addAluno(String matricula) {
+        if (tamanho != null && alunos.size() + 1 > tamanho){
+            throw new IllegalArgumentException("GRUPO CHEIO");
+        }
+        if (alunos.contains(matricula)) {
+            throw new IllegalArgumentException("ALUNO JÁ ESTÁ NO GRUPO");
+        }
+        this.alunos.add(matricula);
     }
 
     
     /** 
-     * @return Integer
+     * @return String
      */
     public Integer getTamanho() {
         return tamanho;
@@ -52,9 +58,17 @@ public class Grupo {
      * @return boolean
      */
     public boolean hasAluno(String matricula) {
-        return alunos.containsKey(matricula);
+        return alunos.contains(matricula);
     }
 
+    
+    /** 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return this.getTema() + " " + alunos.size() + "/" + (tamanho != null ? this.getTamanho() : "∞");
+    }
     
     /** 
      * @param obj

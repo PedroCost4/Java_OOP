@@ -42,7 +42,7 @@ public class Aluno {
      */
     @Override
     public String toString() {
-        return getNome() + " - " + getCurso();
+        return this.getNome() + " - " + this.getCurso();
     }
 }
 
