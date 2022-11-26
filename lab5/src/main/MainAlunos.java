@@ -144,18 +144,18 @@ public class MainAlunos {
             System.out.println(e.getMessage());
         }
     }
-
+    
     
     /** 
-     * @param scanner
      * @param control
+     * @param scanner
      */
     public static void pertinenciaGrupo(Scanner scanner, ControleDeAlunos control) {
         System.out.println("Grupo: ");
         String grupo = scanner.nextLine();
         System.out.println("Aluno: ");
         String aluno = scanner.nextLine();
-
+        
         try {
             System.out.println(control.pertinenciaGrupo(aluno, grupo)? "ALUNO PERTENCE AO GRUPO" : "ALUNO NÃO PERTENCE AO GRUPO");
         }catch (Exception e){

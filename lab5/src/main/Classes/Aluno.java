@@ -1,11 +1,24 @@
 package Classes;
 
+/**
+ * Um aluno que contém informações sobre sua matrícula, nome e curso do aluno.
+ * 
+ * @author pedro.henrique.costa
+ *
+ */
 public class Aluno {
     
     private String matricula;
     private String nome;
     private String curso;
 
+    /**
+     * Constrói um aluno a partir de sua matrícula, nome e curso.
+     * 
+     * @param matricula
+     * @param nome
+     * @param curso
+     */
     public Aluno(String matricula, String nome, String curso) {
         this.matricula = matricula;
         this.nome = nome;
@@ -38,6 +51,7 @@ public class Aluno {
 
     
     /** 
+     * Cria uma String com as informações do aluno.
      * @return String
      */
     @Override

@@ -2,12 +2,25 @@ package Classes;
 
 import java.util.HashSet;
 
+
+/**
+ * Um grupo que contém informações sobre seu tema e tamanho além de alunos que pertencem a ele. 
+ * 
+ * @author nazareno
+ *
+ */
 public class Grupo {
     
     private HashSet<String> alunos; 
     private Integer tamanho;
     private String tema;
 
+    /**
+     * Constrói um grupo a partir de seu tema e tamanho.
+     * 
+     * @param tema
+     * @param tamanho
+     */
     public Grupo(String tema, Integer tamanho) {
         this.alunos = new HashSet<String>();
         this.tamanho = tamanho;
@@ -16,6 +29,7 @@ public class Grupo {
 
     
     /** 
+     *
      * @return HashMap<String, Aluno>
      */
     public HashSet<String> getAlunos() {
@@ -24,6 +38,8 @@ public class Grupo {
 
     
     /** 
+     * Trata erros de entrada e então adiciona aluno ao array de alunos.
+     * 
      * @param aluno
      */
     public void addAluno(String matricula) {
@@ -54,6 +70,8 @@ public class Grupo {
     
     
     /** 
+     * checa se aluno já pertence ao grupo.
+     * 
      * @param matricula
      * @return boolean
      */
@@ -61,38 +79,15 @@ public class Grupo {
         return alunos.contains(matricula);
     }
 
+    private String capitalizeTema() {
+        return this.tema.substring(0, 1).toUpperCase() + this.tema.substring(1);
+    }
     
     /** 
      * @return String
      */
     @Override
     public String toString() {
-        return this.getTema() + " " + alunos.size() + "/" + (tamanho != null ? this.getTamanho() : "∞");
+        return this.capitalizeTema() + " " + alunos.size() + "/" + (tamanho != null ? this.getTamanho() : "∞");
     }
-    
-    /** 
-     * @param obj
-     * @return boolean
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Grupo) {
-            Grupo grupo = (Grupo) obj;
-            return this.tema.equals(grupo.getTema());
-        }
-        return false;
-    }
-
-    
-    /** 
-     * @return int
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + tema.hashCode();
-        return result;
-    }
-
 }
