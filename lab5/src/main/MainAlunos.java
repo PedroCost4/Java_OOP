@@ -27,13 +27,11 @@ public class MainAlunos {
     String menu = "\n(C)adastrar Aluno\n" +
                       "(E)xibir Aluno\n" +
                       "(N)ovo Grupo\n" +
-                      "(A)locar Aluno no Grupo e (P)ertincencia de Grupos\n" +
+                      "(A)locar Aluno no Grupo e verificar pertinência a Grupos\n" +
                       "(O)lha quais grupos o Aluno tá\n" +
                       "(S)im, quero sair\n";
         return menu;
     }
-
-    
     /** 
      * @param scanner
      * @param control
@@ -50,18 +48,32 @@ public class MainAlunos {
             case "N":
                 novoGrupo(scanner, control);
                 break;
-
             case "A":
-                alocarAluno(scanner, control);
-                break;
-            case "P":
-                pertinenciaGrupo(scanner, control);
+                switchMenu2(scanner, control);
                 break;
             case "O":
                 olhaGrupos(scanner, control);
                 break;
             case "S":
                 sai();
+                break;
+            default:
+                sai();
+                break;
+        }
+    }
+
+    public static void switchMenu2(Scanner scanner, ControleDeAlunos control) {
+        String menu = "(A)locar Aluno no Grupo\n" +
+                      "(V)erificar pertinência a Grupos\n";
+        System.out.println(menu);
+        String opcao = scanner.nextLine().toUpperCase();
+        switch (opcao) {
+            case "A":
+                alocarAluno(scanner, control);
+                break;
+            case "P":
+                pertinenciaGrupo(scanner, control);
                 break;
             default:
                 sai();

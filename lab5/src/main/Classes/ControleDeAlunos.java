@@ -176,7 +176,7 @@ public class ControleDeAlunos {
      */
     private Grupo hasGrupo(String tema) {
         if (grupos.containsKey(tema.toUpperCase())){
-            return grupos.get(tema);
+            return grupos.get(tema.toUpperCase());
         } else {
             throw new IllegalArgumentException("GRUPO NÃO CADASTRADO");
         }

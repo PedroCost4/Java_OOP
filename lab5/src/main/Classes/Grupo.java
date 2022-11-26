@@ -79,15 +79,12 @@ public class Grupo {
         return alunos.contains(matricula);
     }
 
-    private String capitalizeTema() {
-        return this.tema.substring(0, 1).toUpperCase() + this.tema.substring(1);
-    }
-    
+  
     /** 
      * @return String
      */
     @Override
     public String toString() {
-        return this.capitalizeTema() + " " + alunos.size() + "/" + (tamanho != null ? this.getTamanho() : "∞");
+        return this.getTema() + " " + alunos.size() + "/" + (tamanho != null ? this.getTamanho() : "∞");
     }
 }

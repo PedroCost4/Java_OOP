@@ -3,12 +3,10 @@ package tests;
 import Classes.*;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
-
 
 public class testControleAlunos {
 
@@ -104,3 +102,4 @@ public class testControleAlunos {
         assertEquals("Programação OO 1/∞\nListas 1/∞\n", controle.gruposDoAluno("250"));
     }
 }
+ 
