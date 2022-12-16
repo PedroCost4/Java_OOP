@@ -1,28 +1,45 @@
 package meuDesafioMinhaVida.desafios;
 
-import java.util.HashMap;
-import meuDesafioMinhaVida.acoes.Acao;
-
 public class Desafio {
 
     private int id;
     private String titulo;
     private String descricao;
     private int execucoes;
-    private HashMap < Integer, Acao> acaoMap; 
+    private String tipo;
+    private int satisfacao;
     
     public Desafio(int id, String titulo, String desc) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = desc;
+        this.tipo = "Pessoal";
+        this.satisfacao = 0;
         this.execucoes = 0;
-        this.acaoMap = new HashMap < Integer, Acao > ();
     }
 
     public Desafio(int id, String titulo) {
         this.id = id;
         this.titulo = titulo;
+        this.tipo = "Pessoal";
+        this.satisfacao = 0;
         this.execucoes = 0;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    protected void setSatisfacao(int satisfacao) {
+        this.satisfacao = satisfacao;
+    }
+
+    protected void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getSatisfacao() {
+        return this.satisfacao;
     }
 
     public int getId() {
@@ -37,37 +54,22 @@ public class Desafio {
         return this.execucoes;
     }
 
-    public HashMap < Integer, Acao > getAcaoMap() {
-        return this.acaoMap;
-    }
-
-    public void adicionaAcao(int id, Acao acao) {
-        this.acaoMap.put(id, acao);
-    }
-
-    public void getAcao (int id) {
-        this.acaoMap.get(id);
-    }
-
     public String getDescricao() {
         return this.descricao;
     }
 
-    public void adicionaExecucao() {
+    protected void adicionaExecucao() {
+        this.execucoes ++;
+    }
+
+    public void finalizaAcao() {
         this.execucoes++;
-    }
-
-    public void atualizaProgresso(int idAcao, int progresso) {
-        this.acaoMap.get(idAcao).atualizaProgresso(progresso);
-    }
-
-    public int getProgressoAcao(int idAcao) {
-        return this.acaoMap.get(idAcao).getProgresso();
+        this.satisfacao += 10;
     }
 
     @Override
     public String toString() {
-        return String.format("Titulo: %s\n%d execuções", this.titulo, this.execucoes);
+        return String.format("Titulo: %s (%s)\n%d execuções", this.titulo, this.tipo, this.execucoes);
     }
 
     @Override

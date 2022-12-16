@@ -13,8 +13,7 @@ public class MeuDesafioMinhaVida{
         this.acaoController = new AcaoController();
     }
 
-    public void adicionaAcao(int idAcao, String dataCriacao, int idDesafio) {
-        String tituloDesafio = this.desafioController.getDesafio(idDesafio).getTitulo();
+    public void adicionaAcao(int idAcao, String dataCriacao, String tituloDesafio) {
         this.acaoController.adicionaAcao(idAcao, tituloDesafio, dataCriacao);
     }
 
@@ -22,27 +21,57 @@ public class MeuDesafioMinhaVida{
         this.desafioController.adicionaDesafio(titulo, desc);
     }
 
-    public int adicionaDesafio(String titulo) {
-        return this.desafioController.adicionaDesafio(titulo);
+    public void adicionaDesafio(String titulo) {
+        this.desafioController.adicionaDesafio(titulo);
     }
 
-    public String exibeDesafio(int id) {
-        return this.desafioController.exibirDesafio(id);
+    public void adicionaDesafioMaterial(String titulo, String desc, int valor) {
+        this.desafioController.adicionaDesafioMaterial(titulo, desc, valor);
+    }
+
+    public void adicionaDesafioMaterial(String titulo, int valor) {
+        this.desafioController.adicionaDesafioMaterial(titulo, valor);
+    }
+
+    public void adicionaDesafioSocial(String titulo, String desc, int pessoasAtingidas) {
+        this.desafioController.adicionaDesafioSocial(titulo, desc, pessoasAtingidas);
+    }
+
+    public void adicionaDesafioSocial(String titulo, int pessoasAtingidas) {
+        this.desafioController.adicionaDesafioSocial(titulo, pessoasAtingidas);
     }
 
     public String listarAcoes() {
         return this.acaoController.listarAcoes();
     }
 
-    public void adicionarAcaoDesafio(int idDesafio, int idAcao) {
-        this.desafioController.adicionaAcao(idDesafio, idAcao, this.acaoController.getAcao(idAcao));
-    }
-
-    public void atualizaProgresso(int idDesafio, int idAcao, int progresso) {
-        this.desafioController.atualizaProgresso(idDesafio, idAcao, progresso);
+    public int pegarSatisfacao(String tituloDesafio) {
+        return this.desafioController.getSatisfacao(tituloDesafio);
     }
 
     public void atualizaProgressoAcao(int idAcao, int progresso) {
-        this.acaoController.atualizaProgresso(idAcao, progresso);
+        int prog = this.acaoController.atualizaProgresso(idAcao, progresso);
+        String tituloDesafio = this.acaoController.getAcao(idAcao).getTituloDesafio();
+
+        if (prog >= 100) {
+            this.desafioController.adicionaExecucao(tituloDesafio);
+        }
     }
+
+    public void atualizaProgressoAcao(int idAcao) {
+        int prog = this.acaoController.atualizaProgresso(idAcao, 10);
+        String tituloDesafio = this.acaoController.getAcao(idAcao).getTituloDesafio();
+
+        if (prog >= 100) {
+            this.desafioController.adicionaExecucao(tituloDesafio);
+        }
+    }
+
+    public String exibeDesafio(String tituloDesafio) {
+        return this.desafioController.exibirDesafio(tituloDesafio);
+    }
+
+
+
+    
 }

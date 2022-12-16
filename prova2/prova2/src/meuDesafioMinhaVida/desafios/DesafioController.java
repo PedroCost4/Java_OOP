@@ -1,6 +1,7 @@
 package meuDesafioMinhaVida.desafios;
 
-import meuDesafioMinhaVida.acoes.Acao;
+import meuDesafioMinhaVida.desafios.tiposDesafios.desafioMaterial;
+import meuDesafioMinhaVida.desafios.tiposDesafios.desafioSocial;
 
 public class DesafioController {
     
@@ -16,36 +17,55 @@ public class DesafioController {
         return this.desafioRepository.getDesafioMap().size();
     }
 
-    public int adicionaDesafio (String titulo) {
+    public int adicionaDesafio(String titulo) {
         Desafio Desafio = new Desafio(this.desafioRepository.getDesafioMap().size() + 1, titulo);
         this.desafioRepository.adicionaDesafio(Desafio);
         return this.desafioRepository.getDesafioMap().size();
+    }
+
+    public int adicionaDesafioMaterial (String titulo, String desc, int valor) {
+        desafioMaterial Desafio = new desafioMaterial(this.desafioRepository.getDesafioMap().size() + 1, titulo, desc, valor);
+        this.desafioRepository.adicionaDesafio(Desafio);
+        return this.desafioRepository.getDesafioMap().size();
+    }
+
+    public int adicionaDesafioMaterial (String titulo, int valor) {
+        desafioMaterial Desafio = new desafioMaterial(this.desafioRepository.getDesafioMap().size() + 1, titulo, valor);
+        this.desafioRepository.adicionaDesafio(Desafio);
+        return this.desafioRepository.getDesafioMap().size();
+    }
+
+    public int adicionaDesafioSocial (String titulo, String desc, int pessoasAtingidas) {
+        desafioSocial Desafio = new desafioSocial(this.desafioRepository.tamanhoMap() + 1, titulo, desc, pessoasAtingidas);
+        this.desafioRepository.adicionaDesafio(Desafio);
+        return this.desafioRepository.tamanhoMap();
+    }
+
+    public int adicionaDesafioSocial (String titulo, int pessoasAtingidas) {
+        desafioSocial Desafio = new desafioSocial(this.desafioRepository.tamanhoMap() + 1, titulo, pessoasAtingidas);
+        this.desafioRepository.adicionaDesafio(Desafio);
+        return this.desafioRepository.tamanhoMap();
     }
 
     public String listarDesafios() {
         return this.desafioRepository.listaDesafios();
     }
 
-    public Desafio getDesafio(int id) {
-        return this.desafioRepository.getDesafio(id);
+    public Desafio getDesafio(String titulo) {
+        return this.desafioRepository.getDesafio(titulo);
     }
 
-    public void adicionaExecucao(int id) {
-        this.desafioRepository.adicionaExecucao(id);
+    public int getSatisfacao(String titulo) {
+        return this.desafioRepository.getDesafio(titulo).getSatisfacao();
     }
 
-    public String exibirDesafio(int id) {
-        return this.desafioRepository.exibirDesafio(id);
+    public int adicionaExecucao(String titulo) {
+        this.desafioRepository.adicionaExecucao(titulo);
+        return this.desafioRepository.getDesafio(titulo).getSatisfacao();
     }
 
-    public void adicionaAcao(int idDesafio, int idAcao, Acao Acao) {
-        this.desafioRepository.adicionaAcao(idDesafio, idAcao, Acao);
+    public String exibirDesafio(String titulo) {
+        return this.desafioRepository.exibirDesafio(titulo);
     }
 
-    public void atualizaProgresso(int idDesafio, int idAcao, int Progresso) {
-        this.desafioRepository.atualizaProgresso(idDesafio, idAcao, Progresso);
-        if (this.desafioRepository.getProgessoAcao(idDesafio, idAcao) == 100) {
-            this.desafioRepository.getDesafio(idDesafio).adicionaExecucao();
-        }
-    }
 }
