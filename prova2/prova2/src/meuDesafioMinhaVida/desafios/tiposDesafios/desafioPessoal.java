@@ -2,7 +2,7 @@ package meuDesafioMinhaVida.desafios.tiposDesafios;
 
 import meuDesafioMinhaVida.desafios.desafio;
 
-public class desafioPessoal extends desafio{
+public class desafioPessoal extends desafio implements desafioInteface{
     
     public desafioPessoal(int id, String titulo, String desc) {
         super(id, titulo, desc);
