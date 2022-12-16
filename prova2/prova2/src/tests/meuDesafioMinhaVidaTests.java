@@ -53,11 +53,20 @@ public class meuDesafioMinhaVidaTests {
 
     @Test 
     public void testSatisfacaoDesafioSocial() {
-        meuDesafioMinhaVida.adicionaDesafioSocial("Fazer um amigo",75);
-        meuDesafioMinhaVida.adicionaAcao(1, "01/01/2020", "Fazer um amigo");
+        meuDesafioMinhaVida.adicionaDesafioSocial("Fazer amigos",75);
+        meuDesafioMinhaVida.adicionaAcao(1, "01/01/2020", "Fazer amigos");
         meuDesafioMinhaVida.atualizaProgressoAcao(1, 100);
-        assertEquals("Titulo: Fazer um amigo (Social)\n1 execuções", meuDesafioMinhaVida.exibeDesafio("Fazer um amigo"));
-        assertEquals(50, meuDesafioMinhaVida.pegarSatisfacao("Fazer um amigo"));
+        assertEquals("Titulo: Fazer amigos (Social)\n1 execuções", meuDesafioMinhaVida.exibeDesafio("Fazer amigos"));
+        assertEquals(50, meuDesafioMinhaVida.pegarSatisfacao("Fazer amigos"));
+    }
+
+    @Test 
+    public void testSatisfacaoDesafioSocial2() {
+        meuDesafioMinhaVida.adicionaDesafioSocial("Ir pra uma festa",150);
+        meuDesafioMinhaVida.adicionaAcao(1, "01/01/2020", "Ir pra uma festa");
+        meuDesafioMinhaVida.atualizaProgressoAcao(1, 100);
+        assertEquals("Titulo: Ir pra uma festa (Social)\n1 execuções", meuDesafioMinhaVida.exibeDesafio("Ir pra uma festa"));
+        assertEquals(150, meuDesafioMinhaVida.pegarSatisfacao("Ir pra uma festa"));
     }
 
     @Test
