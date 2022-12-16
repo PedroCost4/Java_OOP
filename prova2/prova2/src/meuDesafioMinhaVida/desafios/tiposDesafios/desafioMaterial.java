@@ -2,7 +2,7 @@ package meuDesafioMinhaVida.desafios.tiposDesafios;
 
 import meuDesafioMinhaVida.desafios.desafio;
 
-public class desafioMaterial extends desafio implements desafioInteface {
+public class desafioMaterial extends desafio implements desafioInterface {
     
     private int valor;
 
