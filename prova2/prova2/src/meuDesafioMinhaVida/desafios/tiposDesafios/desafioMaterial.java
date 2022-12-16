@@ -1,8 +1,8 @@
 package meuDesafioMinhaVida.desafios.tiposDesafios;
 
-import meuDesafioMinhaVida.desafios.Desafio;
+import meuDesafioMinhaVida.desafios.desafio;
 
-public class desafioMaterial extends Desafio {
+public class desafioMaterial extends desafio {
     
     private int valor;
 

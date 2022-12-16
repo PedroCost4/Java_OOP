@@ -1,6 +1,6 @@
 package meuDesafioMinhaVida.desafios;
 
-public class Desafio {
+public class desafio {
 
     private int id;
     private String titulo;
@@ -9,19 +9,17 @@ public class Desafio {
     private String tipo;
     private int satisfacao;
     
-    public Desafio(int id, String titulo, String desc) {
+    public desafio(int id, String titulo, String desc) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = desc;
-        this.tipo = "Pessoal";
         this.satisfacao = 0;
         this.execucoes = 0;
     }
 
-    public Desafio(int id, String titulo) {
+    public desafio(int id, String titulo) {
         this.id = id;
         this.titulo = titulo;
-        this.tipo = "Pessoal";
         this.satisfacao = 0;
         this.execucoes = 0;
     }
@@ -64,7 +62,6 @@ public class Desafio {
 
     public void finalizaAcao() {
         this.execucoes++;
-        this.satisfacao += 10;
     }
 
     @Override
@@ -83,8 +80,8 @@ public class Desafio {
     @Override
     public boolean equals(Object obj) {
 
-        if (obj instanceof Desafio) {
-            Desafio desafio = (Desafio) obj;
+        if (obj instanceof desafio) {
+            desafio desafio = (desafio) obj;
             return desafio.getTitulo().equals(this.getTitulo());
         }
 

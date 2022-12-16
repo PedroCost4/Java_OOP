@@ -2,6 +2,7 @@ package meuDesafioMinhaVida.desafios;
 
 import meuDesafioMinhaVida.desafios.tiposDesafios.desafioMaterial;
 import meuDesafioMinhaVida.desafios.tiposDesafios.desafioSocial;
+import meuDesafioMinhaVida.desafios.tiposDesafios.desafioPessoal;
 
 public class DesafioController {
     
@@ -12,13 +13,13 @@ public class DesafioController {
     }
 
     public int adicionaDesafio (String titulo, String desc) {
-        Desafio Desafio = new Desafio(this.desafioRepository.getDesafioMap().size() + 1, titulo, desc);
+        desafioPessoal Desafio = new desafioPessoal(this.desafioRepository.getDesafioMap().size() + 1, titulo, desc);
         this.desafioRepository.adicionaDesafio(Desafio);
         return this.desafioRepository.getDesafioMap().size();
     }
 
     public int adicionaDesafio(String titulo) {
-        Desafio Desafio = new Desafio(this.desafioRepository.getDesafioMap().size() + 1, titulo);
+        desafioPessoal Desafio = new desafioPessoal(this.desafioRepository.getDesafioMap().size() + 1, titulo);
         this.desafioRepository.adicionaDesafio(Desafio);
         return this.desafioRepository.getDesafioMap().size();
     }
@@ -51,7 +52,7 @@ public class DesafioController {
         return this.desafioRepository.listaDesafios();
     }
 
-    public Desafio getDesafio(String titulo) {
+    public desafio getDesafio(String titulo) {
         return this.desafioRepository.getDesafio(titulo);
     }
 

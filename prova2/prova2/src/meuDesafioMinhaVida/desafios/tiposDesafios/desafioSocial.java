@@ -1,8 +1,8 @@
 package meuDesafioMinhaVida.desafios.tiposDesafios;
 
-import meuDesafioMinhaVida.desafios.Desafio;
+import meuDesafioMinhaVida.desafios.desafio;
 
-public class desafioSocial extends Desafio{
+public class desafioSocial extends desafio{
     
     private int pessoasAtingidas;
 

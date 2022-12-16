@@ -4,33 +4,33 @@ import java.util.HashMap;
 
 public class DesafioRepository {
     
-    private HashMap < String, Desafio > DesafioMap;
+    private HashMap < String, desafio > DesafioMap;
 
     public DesafioRepository() {
-        this.DesafioMap = new HashMap < String, Desafio > ();
+        this.DesafioMap = new HashMap < String, desafio > ();
     }
 
     public int tamanhoMap() {
         return this.DesafioMap.size();
     }
 
-    public void adicionaDesafio(Desafio Desafio) {
+    public void adicionaDesafio(desafio Desafio) {
         this.DesafioMap.put(Desafio.getTitulo(), Desafio);
     }
 
     public String listaDesafios() {
         String desafios = "";
-        for (Desafio desafio : this.DesafioMap.values()) {
+        for (desafio desafio : this.DesafioMap.values()) {
             desafios += desafio.toString() + "\n";
         }
         return desafios;
     }
 
-    public Desafio getDesafio(String titulo) {
+    public desafio getDesafio(String titulo) {
         return this.DesafioMap.get(titulo);
     }
     
-    public HashMap < String, Desafio > getDesafioMap() {
+    public HashMap < String, desafio > getDesafioMap() {
         return this.DesafioMap;
     }
 
