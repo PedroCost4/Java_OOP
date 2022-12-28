@@ -1,8 +1,6 @@
-package documin.elementos.elementTypes;
+package documin.element;
 
-import documin.elementos.elementAbstract;
-
-public class titleElement extends elementAbstract {
+public class titleElement implements elementInterface {
     
     private String tituloDocumento;
     private int level;
@@ -18,39 +16,75 @@ public class titleElement extends elementAbstract {
         this.prioridade = prioridade;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getTituloDocumento() {
-        return tituloDocumento;
+        return this.tituloDocumento;
     }
 
 
+    
+    /** 
+     * @return String
+     */
     private String getValorFormated() {
-        return valor.replace(" ", "").toUpperCase();
+        return this.valor.replace(" ", "").toUpperCase();
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getPrioridade() {
-        return prioridade;
+        return this.prioridade;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getValor() {
-        return valor;
+        return this.valor;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getLevel() {
-        return level;
+        return this.level;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean isLinkable() {
-        return linkable;
+        return this.linkable;
     }
 
+    
+    /** 
+     * @return String
+     */
     private String getLink() {
-        return (linkable) ? String.format("&s-&s", this.getLevel(), this.getValorFormated()) : "";
+        return (this.linkable) ? String.format("&s-&s", this.getLevel(), this.getValorFormated()) : "";
     }
 
+    
+    /** 
+     * @return String
+     */
     public String representacaoCompleta() {
         return String.format("&d. &s -- &s", this.getLevel(), this.getValor(), this.getLink());
     }
 
+    
+    /** 
+     * @return String
+     */
     public String representacaoResumida() {
         return String.format("&d. &s", this.getLevel(), this.getValor());
     }

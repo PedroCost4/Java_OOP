@@ -1,10 +1,11 @@
-package documin.elementos.elementTypes;
+package documin.models.elemenTypes;
 
-import documin.elementos.elementAbstract;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class termElement extends elementAbstract {
+import documin.interfaces.elementInterface;
+
+public class termElement implements elementInterface {
 
     private String tituloDocumento;
     private String separator;
@@ -20,26 +21,50 @@ public class termElement extends elementAbstract {
         this.prioridade = prioridade;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getValor() {
         return valor;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getTituloDocumento() {
         return tituloDocumento;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getSeparator() {
         return separator;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getPrioridade() {
         return prioridade;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getOrdem() {
         return ordem;
     }
 
+    
+    /** 
+     * @return String
+     */
     private String processarOrdemRepCompleta() {
         String[] valores = this.getValor().split(this.getSeparator());
         if (this.ordem.equalsIgnoreCase("ALFABÉTICA")) {
@@ -55,10 +80,18 @@ public class termElement extends elementAbstract {
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     public String representacaoCompleta() {
         return processarOrdemRepCompleta();
     }
 
+    
+    /** 
+     * @return String
+     */
     public String representacaoResumida() {
         return this.getValor();
     }
